@@ -13,7 +13,7 @@ env:
   - DB=generic
   - DB=postgres POSTGIS_VERSION=1.5
   #- DB=postgres POSTGIS_VERSION=2
-  #- DB=mysql
+  - DB=mysql
 
 install:
   # install GeoAlchemy in editable mode
