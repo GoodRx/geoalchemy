@@ -523,12 +523,3 @@ class TestGeometry(TestCase):
         query_wkt = Select([func.wkt(spot_alias.spot_location.RAW)]).__str__()
         ok_('SELECT wkt(spots_1.spot_location' in query_wkt, 'Table alias is used in select clause')
         ok_('FROM spots AS spots_1' in query_wkt, 'Table alias is used in from clause')
-
-
-if __name__ == '__main__':
-    import sys
-    import nose
-
-    sys.argv.append(__name__)
-    result = nose.run()
-    sys.exit(int(not result))

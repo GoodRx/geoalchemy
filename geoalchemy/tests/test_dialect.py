@@ -40,12 +40,3 @@ class TestDialectManager(TestCase):
         ok_(isinstance(parse_clause('GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))', None), WKTSpatialElement))
         ok_(isinstance(parse_clause('GEOMETRYCOLLECTION (POINT(4 6),LINESTRING(4 6,7 10))', None), WKTSpatialElement))
         ok_(not isinstance(parse_clause('unit=km arc_tolerance=0.05)', None), WKTSpatialElement))
-
-
-if __name__ == '__main__':
-    import sys
-    import nose
-
-    sys.argv.append(__name__)
-    result = nose.run()
-    sys.exit(int(not result))

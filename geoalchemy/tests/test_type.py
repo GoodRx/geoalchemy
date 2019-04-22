@@ -56,12 +56,3 @@ class TestType(TestCase):
         from geoalchemy.geometry import GeometryCollection
         c = cast('', GeometryCollection)
         eq_(str(c), 'CAST(:param_1 AS GEOMETRYCOLLECTION)')
-
-
-if __name__ == '__main__':
-    import sys
-    import nose
-
-    sys.argv.append(__name__)
-    result = nose.run()
-    sys.exit(int(not result))
