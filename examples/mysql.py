@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy import (Geometry, Point, LineString, Polygon,
 		GeometryColumn, GeometryDDL, WKTSpatialElement)
 
-engine = create_engine('mysql://gis:gis@localhost/gis', echo=True)
+engine = create_engine('mysql+mysqldb://gis:gis@localhost/gis', echo=True)
 metadata = MetaData(engine)
 session = sessionmaker(bind=engine)()
 Base = declarative_base(metadata=metadata)
@@ -36,7 +36,7 @@ class Spot(Base):
 
 # enable the DDL extension, which allows CREATE/DROP operations
 # to work correctly.  This is not needed if working with externally
-# defined tables.    
+# defined tables.
 GeometryDDL(Road.__table__)
 GeometryDDL(Lake.__table__)
 GeometryDDL(Spot.__table__)

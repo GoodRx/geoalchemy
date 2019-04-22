@@ -15,7 +15,7 @@ from sqlalchemy.exc import OperationalError
 
 from geoalchemy.mysql import MySQLComparator, mysql_functions
 
-engine = create_engine('mysql://gis:gis@localhost/gis', echo=True)
+engine = create_engine('mysql+mysqldb://gis:gis@localhost/gis', echo=True)
 metadata = MetaData(engine)
 session = sessionmaker(bind=engine)()
 Base = declarative_base(metadata=metadata)
