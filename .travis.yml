@@ -55,7 +55,7 @@ script:
   - if [[ "$DB" == "generic" ]]; then pytest geoalchemy/tests/test_type.py; fi
 
   - if [[ "$DB" == "postgres" ]]; then pytest geoalchemy/tests/test_postgis.py; fi
-  - if [[ "$DB" == "mysql" ]]; then pytest geoalchemy/tests/test_mysql.py; fi
+  - if [[ "$DB" == "mysql" ]]; then pytest --tb=short geoalchemy/tests/test_mysql.py; fi
 
 notifications:
   email:
