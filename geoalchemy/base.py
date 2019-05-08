@@ -7,6 +7,7 @@ except ImportError:
     from sqlalchemy.sql.expression import Function  # sqlalchemy < 0.9
 from sqlalchemy.types import UserDefinedType
 from sqlalchemy.ext.compiler import compiles
+import six
 
 from .utils import from_wkt
 from .functions import functions, _get_function, BaseFunction
@@ -60,7 +61,7 @@ class WKTSpatialElement(SpatialElement, Function):
     """
 
     def __init__(self, desc, srid=4326, geometry_type='GEOMETRY'):
-        assert isinstance(desc, basestring)
+        assert isinstance(desc, six.string_types)
         self.desc = desc
         self.srid = srid
         self.geometry_type = geometry_type
@@ -89,7 +90,6 @@ class WKBSpatialElement(SpatialElement, Function):
     """
 
     def __init__(self, desc, srid=4326, geometry_type='GEOMETRY'):
-        assert isinstance(desc, (basestring, buffer))
         self.desc = desc
         self.srid = srid
         self.geometry_type = geometry_type
@@ -205,7 +205,7 @@ def _to_gis(value, srid_db):
         if isinstance(value.desc, (WKBSpatialElement, WKTSpatialElement)):
             return _check_srid(value.desc, srid_db)
         return _check_srid(value, srid_db)
-    elif isinstance(value, basestring):
+    elif isinstance(value, six.string_types):
         return _check_srid(WKTSpatialElement(value), srid_db)
     elif isinstance(value, expression.ClauseElement):
         return value
