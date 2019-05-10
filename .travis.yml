@@ -16,8 +16,7 @@ addons:
 
 env:
   - DB=generic
-  - DB=postgres POSTGIS_VERSION=1.5
-  - DB=postgres POSTGIS_VERSION=2
+  - DB=postgres
   - DB=mysql
 
 install:
@@ -46,9 +45,7 @@ before_script:
   - if [[ "$DB" == "mysql" ]]; then mysql --user=root -e "CREATE DATABASE gis;"; fi
 
   # add PostGIS extension to "gis" database
-  - if [[ "$DB" == "postgres" ]] && [[ "$POSTGIS_VERSION" == "1.5" ]]; then psql -d gis -U postgres -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql; fi
-  - if [[ "$DB" == "postgres" ]] && [[ "$POSTGIS_VERSION" == "1.5" ]]; then psql -d gis -U postgres -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql; fi
-  - if [[ "$DB" == "postgres" ]] && [[ "$POSTGIS_VERSION" != "1.5" ]]; then psql -d gis -U postgres -c "CREATE EXTENSION postgis;"; fi
+  - if [[ "$DB" == "postgres" ]]; then psql -d gis -U postgres -c "CREATE EXTENSION postgis;"; fi
 
 script:
   # run tests
