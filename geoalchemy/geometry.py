@@ -157,7 +157,7 @@ class GeometryExtensionColumn(Column):
 @compiles(GeometryExtensionColumn)
 def compile_column(element, compiler, **kw):
     if isinstance(element.table, (Table, Alias)):
-        if "with_columns_clause" in kw and kw["within_columns_clause"] == True:
+        if kw.get("within_columns_clause") == True:
             if element.type.wkt_internal:
                 if isinstance(compiler.dialect, PGDialect):
                     return compiler.process(functions.wkt(element))
