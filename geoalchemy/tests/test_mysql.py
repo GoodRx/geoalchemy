@@ -37,6 +37,7 @@ class Lake(Base):
     lake_geom = GeometryColumn(Polygon(2, srid=4326), comparator=MySQLComparator)
 
 spots_table = Table('spots', metadata,
+                    mysql_engine='MyISAM',
                     Column('spot_id', Integer, primary_key=True),
                     Column('spot_height', Numeric(precision=10, scale=2)),
                     GeometryExtensionColumn('spot_location', Point(2, srid=4326)))
