@@ -22,7 +22,6 @@ Base = declarative_base(metadata=metadata)
 
 class Road(Base):
     __tablename__ = 'roads'
-    __table_args__ = {'mysql_engine': 'MyISAM'}
 
     road_id = Column(Integer, primary_key=True)
     road_name = Column(Unicode(40))
@@ -30,7 +29,6 @@ class Road(Base):
 
 class Lake(Base):
     __tablename__ = 'lakes'
-    __table_args__ = {'mysql_engine': 'MyISAM'}
 
     lake_id = Column(Integer, primary_key=True)
     lake_name = Column(Unicode(40))
