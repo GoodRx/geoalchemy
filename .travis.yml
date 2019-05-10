@@ -1,5 +1,5 @@
 language: python
-dist: trusty
+dist: precise
 
 python:
   - "2.7"
@@ -8,11 +8,11 @@ services:
   - postgresql
   - mysql
 
-addons:
-  postgresql: 9.3
-  apt:
-    packages:
-      - postgresql-9.3-postgis-2.3
+# addons:
+#   postgresql: 9.3
+#   apt:
+#     packages:
+#       - postgresql-9.3-postgis-2.3
 
 env:
   - DB=generic
