@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.7.3dev20190509'
+version = '0.7.3dev20190521'
 
 setup(name='GeoAlchemy',
       version=version,
