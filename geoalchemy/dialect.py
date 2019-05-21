@@ -1,3 +1,4 @@
+import six
 from sqlalchemy.dialects.postgresql.base import PGDialect
 from sqlalchemy.dialects.sqlite.base import SQLiteDialect
 from sqlalchemy.dialects.mysql.base import MySQLDialect
@@ -192,19 +193,19 @@ class DialectManager(object):
     def __dialects():
         if DialectManager.__dialects_mapping is None:
             DialectManager.__initialize_dialects()
-            
+
         return DialectManager.__dialects_mapping
-    
+
     @staticmethod
     def get_spatial_dialect(dialect):
         """This method returns a spatial dialect instance for a given SQLAlchemy dialect.
         The instances are cached, so that for every spatial dialect exists only one instance.
-        
+
         """
-        possible_spatial_dialects = [spatial_dialect for (dialect_sqlalchemy, spatial_dialect) 
-                                     in DialectManager.__dialects().iteritems() 
+        possible_spatial_dialects = [spatial_dialect for (dialect_sqlalchemy, spatial_dialect)
+                                     in six.iteritems(DialectManager.__dialects())
                                      if isinstance(dialect, dialect_sqlalchemy)]
-        
+
         if possible_spatial_dialects:
             # take the first possible spatial dialect
             spatial_dialect = possible_spatial_dialects[0]
